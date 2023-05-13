@@ -5,63 +5,58 @@
 {% block content %}
 
 
-<div class="container d-flex align-items-center flex-column mt-5">  
+<div class="container d-flex align-items-center flex-column">
 
-    <form class="border border-light shadow-lg w-50 rounded-3 p-3"  action="" method="POST"> {% csrf_token %}
-
-        <div class="row mb-3 align-items-center justify-content-center">  
-
-            <div class="col-sm-8 text-center mt-3">
-                <h1>Sign In</h1>
-            </div>
+    <div class="login-box">
         
-        </div>
+        <h2 style="text-align: center; font-family: 'Poppins', sans-serif; color: #83617A;">Sign In</h2>
+        <br>
+        <form action="" method="POST"> {% csrf_token %}
 
-        {% for field in form %}
+            {% for field in form %}
 
-            <div class="row mb-3 align-items-center justify-content-center">        
-                <label class="col-sm-2 col-form-label" for="{{ field.autoid }}">{{ field.label }}:</label>
-                <div class="col-sm-6">
-                    {% render_field field class+="form-control" %}
-                </div>
+                <label class='login-label' for="{{field.label}}"></label>
+                {% render_field field class+=" login-form" placeholder=field.label %}
+
                 <div class="list-group mt-3">
                     {% for error in field.errors %}
                     <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
                     {%endfor%}
                 </div>
+
+
+            {% endfor %}
+
+            <input class="login-bt" type="submit", value="Login">
+
+
+            <div class="row mb-3 align-items-center justify-content-center">        
+
+                <label class="col-sm-8 col-form-label text-center"><b style="color: red;">{{message}}</b></label>
+
             </div>
 
-        {% endfor %}
+            
+        </form>
 
-        <div class="row mb-3 align-items-center justify-content-center">  
-            <div class="col-sm-8">
-                <input class="btn btn-primary w-100" type="submit", value="Sign In">
-            </div>
+        <div class="login-links">        
+            <a href="#"></a>
+            <span class="spacer"></span>
+            <a href="{% url 'signup' %}"> Sign Up</a></b></label>
         </div>
-
-
-        <div class="row mb-3 align-items-center justify-content-center">        
-
-            <label class="col-sm-8 col-form-label text-center"><b style="color: red;">{{message}}</b></label>
-
-        </div>
-
-        <div class="row mb-3 align-items-center justify-content-center">        
-
-            <label class="col-sm-8 col-form-label text-center"><b>Don't have an account? Signup <a href="{% url 'signup' %}"> here</a></b></label>
-
-        </div>
-
+    
         {% if signup_success %}
+
         <div class="row mb-3">
             <div class="col d-flex justify-content-center">
                 <h5><span class="badge bg-success">Account created successfully</span></h5>
             </div>
         </div>
+        
         {% endif %}
-
-    </form>
-
+    
+    </div>
 </div>
+<!-- </div> -->
 
 {% endblock %}

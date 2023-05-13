@@ -1,3 +1,13 @@
+@import url('signIn.css');
+@import url('layout.css');
+
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .data{
   border: none;
   background: none;
@@ -207,3 +217,4 @@ mark {
   max-height: 400px; /* ajusta este valor según la altura deseada */
   overflow-y: auto;
 }
+

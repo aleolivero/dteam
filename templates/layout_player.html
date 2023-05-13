@@ -4,145 +4,148 @@
 
 
 {% block layout %}
-<div class="d-flex flex-column min-vh-100">
-    <div class="flex-grow-1">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-
-            <a class="navbar-brand ms-5" href="{% url 'index' %}">Home</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
         
-            <!-- RESPONSIVE BUTTON -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand ms-5" href="{% url 'index' %}">Home</a>
         
-                <span class="navbar-toggler-icon"></span>
-        
-            </button>
-        
-            <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavDropdown">
-                
-                <!-- NAVBAR ALINEADO A LA IZQUIERDA -->
-                {% if user.is_authenticated %}
-                <ul class="navbar-nav ms-5">
-
-                    <!-- Answers -->
-
-                    <li class="nav-item ">
-
-                        <a class="nav-link " href="{% url 'answersPlayerView' %}" role="button">
-                            Answers
-                        </a>
-                    
-                    </li>
-
-                    <!-- Questions -->
-
-                    <li class="nav-item ">
-
-                        <a class="nav-link " href="{% url 'questionsPlayerView' %}" role="button">
-                            Questions
-                        </a>
-                    
-                    </li>
-
-                    <!-- Event -->
-                    <li class="nav-item ">
-                
-                        <a class="nav-link " href="{% url 'eventsPlayerView' %}" role="button">
-                            Events
-                        </a>
-                    
-                    </li>
-                    <!-- Scores -->
-                    <li class="nav-item ">
-                
-                        <a class="nav-link " href="{% url 'playerScorePlayerView' %}" role="button">
-                            Scores
-                        </a>
-                    
-                    </li>                
-
-                </ul>
-                {% endif %}             
-
-                {% if user.is_staff %}
-
-                <ul class="navbar-nav ms-auto border custom-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'players_view' %}">Players</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'answers_view' %}">Answers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'questions_view' %}">Questions</a>
-                    </li>                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'questionRules_view' %}">Question Rules</a>
-                    </li>                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'events_view' %}">Events</a>
-                    </li>                    
-                
-
-
-                </ul>
-
-                {% endif %}             
-
-                <!-- NAVBAR ALINEADO A LA DERECHA -->
-                <ul class="navbar-nav ms-auto me-5">
-                    {% if not user.is_authenticated %}
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'signin' %}">Sign In</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item me-3">
-                        <a class="nav-link position-relative" href="{% url 'view' %}">
-                            <i class="fas fa-comments"></i>
-                            {% if chats_not_read_ids %}
-                            <span class="position-absolute top-10 start-90 translate-middle badge rounded-pill bg-danger">
-                                {{chats_not_read_ids}}
-                                <span class="visually-hidden">unread messages</span>
-                            </span>
-                            
-                            {% endif %}
-
-                        </a>
-                    </li>
-                    <li class="nav-item ">
-                        {% if request.user.players.image %}
-                            <img src="{{request.user.players.image.url}}" class="img-fluid pt-1 me-1" style="max-height: 40px;">
-                        {% else %}
-                            <img src="/media/players/default/default.png" class="img-fluid pt-1 me-1" style="max-height: 40px;">
-                        {% endif %}
-                        
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'editProfile' %}">Edit Profile</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'editAccount' %}">Edit Account</a>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link" href="{% url 'signout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
-                    </li>        
-                    {% endif %}
-                </ul>
+        <!-- RESPONSIVE BUTTON -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             
+                    <span class="navbar-toggler-icon"></span>
+            
+                </button>
+            
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNavDropdown">
+                    
+                    <!-- NAVBAR ALINEADO A LA IZQUIERDA -->
+                    {% if user.is_authenticated %}
+                    <ul class="navbar-nav ms-5">
+
+                        <!-- Answers -->
+
+                        <li class="nav-item ">
+
+                            <a class="nav-link " href="{% url 'answersPlayerView' %}" role="button">
+                                Respuestas
+                            </a>
+                        
+                        </li>
+
+                        <!-- Questions -->
+
+                        <li class="nav-item ">
+
+                            <a class="nav-link " href="{% url 'questionsPlayerView' %}" role="button">
+                                Preguntas
+                            </a>
+                        
+                        </li>
+
+                        <!-- Event -->
+                        <li class="nav-item ">
+                    
+                            <a class="nav-link " href="{% url 'eventsPlayerView' %}" role="button">
+                                Eventos
+                            </a>
+                        
+                        </li>
+                        <!-- Scores -->
+                        <li class="nav-item ">
+                    
+                            <a class="nav-link " href="{% url 'playerScorePlayerView' %}" role="button">
+                                Resultados
+                            </a>
+                        
+                        </li>                
+
+                    </ul>
+                    {% endif %}             
+
+                    {% if user.is_staff %}
+
+                    <ul class="navbar-nav ms-auto border custom-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'players_view' %}">Players</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'answers_view' %}">Answers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'questions_view' %}">Questions</a>
+                        </li>                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'questionRules_view' %}">Question Rules</a>
+                        </li>                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'events_view' %}">Events</a>
+                        </li>                    
+                    
+
+
+                    </ul>
+
+                    {% endif %}             
+
+                    <!-- NAVBAR ALINEADO A LA DERECHA -->
+                    <ul class="navbar-nav ms-auto me-5">
+                        {% if not user.is_authenticated %}
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'signin' %}">Sign In</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item me-3">
+                            <a class="nav-link position-relative" href="{% url 'view' %}">
+                                <i class="fas fa-comments"></i>
+                                {% if chats_not_read_ids %}
+                                <span class="position-absolute top-10 start-90 translate-middle badge rounded-pill bg-danger">
+                                    {{chats_not_read_ids}}
+                                    <span class="visually-hidden">unread messages</span>
+                                </span>
+                                
+                                {% endif %}
+
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            {% if request.user.players.image %}
+                                <img src="{{request.user.players.image.url}}" class="img-fluid pt-1 me-1" style="max-height: 40px;">
+                            {% else %}
+                                <img src="/media/players/default/default.png" class="img-fluid pt-1 me-1" style="max-height: 40px;">
+                            {% endif %}
+                            
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'editProfile' %}">Perfil</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'editAccount' %}">Cuenta</a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{% url 'signout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+                        </li>        
+                        {% endif %}
+                    </ul>
+                
+
+
+                </div>
+
+
 
 
             </div>
+</nav>
 
-
-
-
-        </div>
-        </nav>
-        {% block content%}
-        
-        {% endblock%}
+<div class="d-flex align-items-center flex-column min-vh-100" style="background-image: url( {% static 'img/background-season.jpg' %} ); background-size: cover;">
+    <div id="alert-season">
+        <h1><span class="badge bg-secondary opacity-25">Evento Otoño 2023</span></h1>
     </div>
+
+    {% block content%}
+    {% endblock%}
+
 </div>
 
 <footer class="bg-dark text-center text-white py-3">
@@ -150,38 +153,6 @@
     <div class="container p-4 pb-0">
         <!-- Section: Social media -->
         <section class="mb-4">
-        <!-- Facebook -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-facebook-f"></i
-        ></a>
-    
-        <!-- Twitter -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-twitter"></i
-        ></a>
-    
-        <!-- Google -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-google"></i
-        ></a>
-    
-        <!-- Instagram -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-instagram"></i
-        ></a>
-    
-        <!-- Linkedin -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-linkedin-in"></i
-        ></a>
-    
-        <!-- Github -->
-        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-            ><i class="fab fa-github"></i
-        ></a>
-        <a class="btn btn-outline-light btn-floating m-1" href="{% url 'about' %}" role="button"
-        ><i class="fas fa-user-astronaut"></i> About me!
-        </a>
         </section>
     </section>
         <!-- Section: Social media -->
@@ -192,7 +163,8 @@
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © 2023 Copyright:
-        <a class="text-white" href="#">aleolivero.com</a>
+        <a class="text-white" href="http://dteam.ar/">dteam.ar</a>
+
     </div>
     <!-- Copyright -->
 </footer>

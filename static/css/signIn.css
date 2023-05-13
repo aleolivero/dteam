@@ -1,0 +1,79 @@
+.login-box{
+    position: relative;
+    top: -70%;
+    /* left: 30%; */
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.26);
+    backdrop-filter:  blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* z-index: 1; */
+    text-align: center;
+    margin-top: 5%;
+
+
+}
+.login-label{
+    display: block;
+    margin-bottom: 2px;
+    font-weight: bold;
+
+}
+
+.login-form{
+    width: 90%;
+    height: 45px;
+    padding: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    /* margin-left: 15px; */
+    font-family: 'Poppins', sans-serif;
+
+}
+.login-bt{
+    background-color: #FFA15F;
+    font-family: 'Poppins', sans-serif;
+    width: 90%;
+    height: 45px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+
+}
+
+.login-bt:hover{
+background-color: #45a049;
+}
+
+@media screen and (max-width: 600px) {
+    .login-box{
+        max-width: 300px;
+    }
+    
+}
+
+.login-links{
+
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-top: 0px;
+
+}
+
+.login-links a {
+    color: #83617A;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 500px;
+}
+.login-links .spacer{
+    margin: 0 120px;
+}
