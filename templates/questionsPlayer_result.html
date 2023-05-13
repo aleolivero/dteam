@@ -1,0 +1,108 @@
+{% extends "layout_player.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+{% load custom_tags %}
+{% block content %}
+
+
+<div class="container d-flex align-items-center justify-content-center flex-column ">
+
+
+
+    <div class="card bg-white my-3 w-100 border border-light shadow-lg rounded-3">
+        <div class="card-header bg-white"><b>{{question.title}}</b></div>
+        <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div style="flex: 1">
+                <h5 class="card-title">{{question.question}}</h5>
+                <p class="card-text"><h4><span class="badge bg-info text-dark">Correct answer: {{question.correct_answer|intcomma}}</span></h4></p>
+                <p class="card-text"><b>Author:</b> {{question.author.user}}</p>
+                <p class="card-text"><b>Category:</b> {{question.category}}</p>
+                <p class="card-text"><b>Date:</b> {{question.date}}</p>
+            </div>
+            <div class="justify-content-center align-items-center" style="flex: 1">
+                <div class="text-center">
+                    <h3 class="mb-1"> <b>Winner</b></h3>
+                    <p class="text-muted mb-0"><span class="badge text-bg-success"> + {{points|intcomma}} POINTS</span></p>
+
+                    <div class="position-relative">
+                        <img src="{% static 'img/winner.png' %}" alt="" class="position-absolute laurel-winner" style="z-index: 2;">
+                        <div class="bg-gold rounded-circle p-1 mx-auto mb-4 shadow" style="width: 150px; height: 150px; z-index: 1; position: relative;">
+                            <img src='{{winner.0.player.image|url}}' alt="Gold" class="w-100 h-100 avatar-podium">
+                        </div>
+                    </div>
+                    <h3 class="mb-0">{{winner.0.player.user}}</h3>
+                    <p>{{ winner.player.first_name }} {{ winner.player.last_name }} &nbsp</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <table class="table align-middle mt-3 mb-3 bg-white  border border-light shadow-lg w-100 rounded-3">
+        
+
+        <thead class="bg-light">
+            
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col"> Answer </th>
+                <th scope="col"> Closest </th>
+                
+            </tr>
+
+        </thead>
+        
+        <tbody>
+
+            {% for answer in answers %}
+
+                {% if answer.player.user == request.user %}
+                    {% define "table-info" as current_user %}
+                {% else %}
+                    {% define "" as current_user %}
+                {% endif %}
+            
+                <tr class="{{current_user}}">
+
+                    <th scope="row">{{ forloop.counter }}</th>
+
+                    <td>
+                        <div class="d-flex align-items-center">
+
+                            <img
+                              src="{{ answer.player.image|url }}"
+                              alt=""
+                              style="width: 45px; height: 45px"
+                              class="rounded-circle"
+                              />
+
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">{{ answer.player.first_name }} {{ answer.player.last_name }} &nbsp</p>
+                                <p class="text-muted mb-0">{{ answer.player.user }}  {% if answer in winner %} <span class="badge text-bg-success">Winner</span> {% endif %} </p>
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>{{ answer.answer|intcomma }}</td>
+                    <td>{{ answer.closest|intcomma }}</td>
+
+                </tr>
+
+            {% endfor %}
+        
+        </tbody>
+
+    </table>
+
+
+
+</div>
+
+{% endblock %}

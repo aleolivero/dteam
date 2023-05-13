@@ -1,0 +1,80 @@
+{% extends "layout_player.html" %}
+{% load static %}
+{% block content %}
+
+
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Welcome {{request.user}} </h1>
+    <h2 class="text-center mb-4"><span class="badge text-bg-primary">Web Trivia Game</span> </h2>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card border-light mb-3 shadow-lg w-100 rounded-3 p-3">
+                <div class="card-header bg-transparent text-center"><h5 class="card-title text-center">Events</h5></div>
+
+                <div class="card-body d-flex flex-column">
+                    
+                    <div class="d-flex justify-content-center mb-3">
+                        <i class="fas fa-calendar fa-4x"></i>
+                    </div>
+                    <p class="card-text text-center">View the events for participate.</p>
+                    <a href="{% url 'eventsPlayerView' %}" class="btn btn-primary mt-auto">View Events</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card border-light mb-3 shadow-lg w-100 rounded-3 p-3">
+                <div class="card-header bg-transparent text-center"><h5 class="card-title text-center">Scores</h5></div>
+
+                <div class="card-body d-flex flex-column">
+                    
+                    <div class="d-flex justify-content-center mb-3">
+                        <i class="fas fa-dice-d20 fa-4x"></i>
+                    </div>
+                    <p class="card-text text-center">View the scores for each event.</p>
+                    <a href="{% url 'playerScorePlayerView' %}" class="btn btn-primary mt-auto">View Scores</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card border-light mb-3 shadow-lg w-100 rounded-3 p-3">
+                <div class="card-header bg-transparent text-center"><h5 class="card-title text-center">Answers</h5></div>
+
+                <div class="card-body d-flex flex-column">
+                    
+                    <div class="d-flex justify-content-center mb-3">
+                        <i class="fas fa-lightbulb fa-4x"></i>
+                    </div>
+                    <p class="card-text text-center">View all yours answers.</p>
+                    <a href="{% url 'answersPlayerView' %}" class="btn btn-primary mt-auto">View Answers</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 d-flex align-items-stretch">
+            <div class="card border-light mb-3 shadow-lg w-100 rounded-3 p-3">
+                <div class="card-header bg-transparent text-center"><h5 class="card-title text-center">Questions</h5></div>
+
+                <div class="card-body d-flex flex-column">
+                    
+                    <div class="d-flex justify-content-center mb-3">
+                        <i class="fa-solid fa-question fa-4x"></i>
+                    </div>
+                    <p class="card-text text-center">View yours all yours questions.</p>
+                    <div class='d-flex justify-content-center'>
+                        <a href="{% url 'questionsPlayerView' %}" class="btn btn-primary mt-auto mx-3">Yours Questions</a>
+                        <a href="{% url 'questionsPlayerAdd' %}" class="btn btn-primary mt-auto mx-3">Make a Question</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

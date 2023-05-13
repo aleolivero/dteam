@@ -1,0 +1,114 @@
+{% extends "layout_player.html" %}
+{% load static %}
+{% load humanize %}
+{% load custom_tags %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container-fluid d-flex align-items-center flex-column mt-5 mb-5 px-5" >  
+
+    <div class="d-flex justify-content-end w-100">
+        <a class="btn btn-primary mb-3" href="{% url 'questionRules_add' %}">Make Question Rule</a>
+    </div>
+
+
+
+    <form class="border border-light shadow-lg w-100 rounded-3 p-3 mb-3"  action="" method="POST"> {% csrf_token %}
+
+        <table class="table table-striped table-hover shadow-lg bg-white rounded-3 w-100">
+            <thead>
+                <tr>
+
+                    {% for field in form %}
+                        <th class="col text-center" scope="col">{{field.label}}</th>
+                    {% endfor %}
+
+                </tr>
+            
+            </thead>
+            <tbody>
+                <tr>
+                    {% for field in form %}
+                        <td class="col text-center">{% render_field field class+="form-control" %}</td>
+                    {% endfor %}
+
+
+                </tr>
+                
+            </tbody>
+        </table>
+        <tr>
+            <input class="btn btn-primary w-100" type="submit", value="SEARCH">
+
+        </tr>
+    </form>
+
+
+    <table class="table table-striped table-hover border border-light shadow-lg bg-white rounded-3 w-100">
+        <thead>
+            <tr>
+                <th class="col text-center" scope="col">Name</th>
+                <th class="col text-center" scope="col">Description</th>
+                <th class="col text-center" scope="col">Points</th>
+                <th class="col text-center" scope="col">Bonus Exact Answer</th>
+                <th class="col text-center" scope="col">Allow Draw</th>
+                <th class="col text-center" scope="col">Allows Wildcard</th>
+                <th class="col text-center" scope="col">Points Draw</th>
+                <th class="col text-center" scope="col">Options</th>
+            </tr>
+        
+        </thead>
+
+        <tbody>
+
+            {% for rule in questionRules %}
+            <tr>
+                <td class="col text-center">{{rule.name}}</td>
+                <td class="col text-center">{{rule.description}}</td>
+                <td class="col text-center">{{rule.points}}</td>
+                <td class="col text-center">{{rule.bonus_exact_answer}}</td>               
+                <td class="col text-center">{{rule.allows_draw}}</td>
+                <td class="col text-center">{{rule.allows_wildcard}}</td>
+                <td class="col text-center">{{rule.points_draw}}</td>
+
+                
+                <td class="col  text-center options">
+                    <div class="d-flex justify-content-center">
+
+                        <!-- Edit -->
+                        <a class="btn btn-primary mx-1"  href="{% url 'questionRules_edit' rule.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Edit question"><i class="fa-solid fa-pen-to-square"></i></a>
+
+                        <!-- Delete -->
+                        <a class="btn btn-danger mx-1"  href="{% url 'questionRules_delete' rule.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Delete question"><i class="fa-solid fa-trash"></i></a>
+
+                    </div>
+                </td>    
+
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" class="w-10 text-center"> There are no question rules </th>
+            </tr> 
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    <tr>
+        <a class="btn btn-primary w-100" href="{% url 'questionRules_view' %}">RESET</a>
+    </tr>
+
+</div>
+<script>
+
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+
+</script>
+
+{% endblock %}

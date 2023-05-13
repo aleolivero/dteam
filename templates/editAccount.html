@@ -1,0 +1,57 @@
+{% extends "layout_player.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div class="container d-flex align-items-center flex-column mt-5">  
+
+    <form class="border border-light shadow-lg w-50 rounded-3 p-3"  action="" method="POST"> {% csrf_token %}
+
+        <div class="row mb-3 align-items-center justify-content-center">  
+
+            <div class="col-sm-8 text-center mt-3">
+                <h1>Edit Account</h1>
+            </div>
+        
+        </div>
+
+        {% for field in form %}
+
+            <div class="row align-items-center justify-content-center">        
+
+                <label class="col-sm-2 col-form-label" for="{{ field.auto_id }}">{{ field.label }}:</label>
+
+                <div class="col-sm-6">
+                    {% render_field field class+="form-control" %}
+                </div>
+
+                <div class="list-group mt-3">
+                    {% for error in field.errors %}
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning">{{error}}</a>
+                    {%endfor%}
+                </div>
+
+                {% if not field.errors %}
+                    <div class="col-sm-8 mt-3">
+                        {{field.help_text}}
+                    </div>
+                {% endif %}
+
+            </div>
+
+        {% endfor %}
+
+        <div class="row mb-3 mt-3 align-items-center justify-content-center">  
+            <div class="col-sm-8">
+                <input class="btn btn-primary w-100" type="submit", value="Update">
+            </div>
+        
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

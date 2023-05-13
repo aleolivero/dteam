@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block layout %}
+<div class="d-flex flex-column min-vh-100">
+    <div class="flex-grow-1">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+
+            <a class="navbar-brand ms-5" href="{% url 'index' %}">Home</a>
+        
+            <!-- RESPONSIVE BUTTON -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        
+                <span class="navbar-toggler-icon"></span>
+        
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                
+                <!-- NAVBAR ALINEADO A LA IZQUIERDA -->
+                {% if user.is_authenticated %}
+                <ul class="navbar-nav ms-5">
+
+                    <!-- Players -->
+                    <li class="nav-item ">
+                
+                        <a class="nav-link " href="{% url 'players_view' %}" role="button">
+                            Players
+                        </a>
+                    
+                    </li>
+                    </li>
+                
+                    <!-- Questions -->
+                    <li class="nav-item ">
+                
+                        <a class="nav-link " href="{% url 'questions_view' %}" role="button">
+                            Questions
+                        </a>
+                    
+                    </li>
+                
+                    <!-- Answers -->
+
+                    <li class="nav-item ">
+
+                        <a class="nav-link " href="{% url 'answersPlayerView' %}" role="button">
+                            Answers
+                        </a>
+                    
+                    </li>
+                
+
+                </ul>
+                {% endif %}
+                <!-- NAVBAR ALINEADO A LA DERECHA -->
+                <ul class="navbar-nav ms-auto me-5">
+                    {% if not user.is_authenticated %}
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'signin' %}">Sign In</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item ">
+                        {% if request.user.players.image %}
+                            <img src="{{request.user.players.image.url}}" class="img-fluid pt-1 me-1" style="max-height: 40px;">
+                        {% else %}
+                            <img src="/media/players/default/default.png" class="img-fluid pt-1 me-1" style="max-height: 40px;">
+                        {% endif %}
+                        
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'editProfile' %}">Edit Profile</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'editAccount' %}">Edit Account</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="{% url 'signout' %}">Sign Out</a>
+                    </li>        
+                    {% endif %}
+                </ul>
+            
+
+
+            </div>
+
+
+
+
+        </div>
+        </nav>
+        {% block content%}
+        
+        {% endblock%}
+    </div>
+</div>
+
+<footer class="bg-dark text-center text-white py-3">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+        <!-- Facebook -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+        ></a>
+    
+        <!-- Twitter -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+        ></a>
+    
+        <!-- Google -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-google"></i
+        ></a>
+    
+        <!-- Instagram -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-instagram"></i
+        ></a>
+    
+        <!-- Linkedin -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-linkedin-in"></i
+        ></a>
+    
+        <!-- Github -->
+        <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-github"></i
+        ></a>
+        </section>
+        <!-- Section: Social media -->
+    </div>
+    <!-- Grid container -->
+    
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="#">aleolivero.com</a>
+    </div>
+    <!-- Copyright -->
+</footer>
+{% endblock%}

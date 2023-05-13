@@ -1,0 +1,76 @@
+{% extends "layout_player.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div class="container-fluid d-flex align-items-center flex-column mt-5 mb-5">  
+
+    <section class="section about-section gray-bg " id="about">
+            
+        <div class="row align-items-start flex-row-reverse container-fluid ">
+                
+            <div class="col-lg-8">
+                <div class="about-text go-to">
+                    <h3 class="dark-color">About Me</h3>
+                    <h6 class="theme-color lead">CPA &amp; Software Engineer in Progress</h6>
+                    <p>I am <mark>Alexis Olivero Aimaretti</mark>, a Certified Public Accountant (CPA), passionate about technology and innovation. <br> 
+                        
+                        I am currently pursuing a degree in Software Engineering with the goal of expanding my skills and knowledge in the technology field.<br>
+
+                        My professional journey has led me to work as a Business Planning and Data Analytics Analyst. <br> 
+                        
+                        In this role, I have gained experience in developing, supporting, and consulting on planning, optimization, and data analytics models using Python.<br>
+                        
+                        My strong background in Accounting and Finance has provided me with skills in financial analysis and data-driven decision-making, perfectly complementing my interest in software engineering and data analytics. <br>
+                        
+                        As I progress in my career, I seek to merge these competencies to create innovative and efficient solutions in the business realm.<br>
+                        
+                        I am firmly committed to continuous learning and personal development. <br>
+                        
+                        I am always looking for opportunities to expand my network of contacts and collaborate on challenging and interesting projects.</p>
+                    <div class="row about-list">
+                        <div class="col-md-2">
+                            <div class="media">
+                                <label>Age</label>
+                                <p>27 Yr</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="media">
+                                <label>Residence</label>
+                                <p>Argentina</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="media">
+                                <label>Email</label>
+                                <p>olivero_aimaretti@hotmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="media">
+                                <label>LinkedIn</label>
+                                <p>www.linkedin.com/in/aleolivero</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 d-flex align-items-start justify-content-end">
+                <div class="about-avatar">
+                    <img src="{% static 'img/about.png' %}" title="" alt="" class = 'img-about'>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+</div>
+
+{% endblock %}

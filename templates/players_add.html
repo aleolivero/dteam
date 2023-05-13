@@ -1,0 +1,49 @@
+{% extends "layout_player.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="container d-flex align-items-center flex-column mt-5">  
+
+    <form class="border border-light shadow-lg w-100 rounded-3 p-3"  action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+        <div class="row mb-1 align-items-center justify-content-center">  
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-7 text-center">
+                <h1>Form Add Players</h1>
+            </div>
+        </div>
+
+        {% for field in form %}
+
+            <!-- field -->
+            <div class="row align-items-center justify-content-center">        
+
+                <label class="col-sm-3 col-form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
+                <div class="col-sm-9">
+                    {% render_field field class+="form-control" %}
+                </div>
+
+                <div class="list-group mt-3">
+                    {% for error in field.errors %}
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
+                    {%endfor%}
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+        <div class="row mb-1 align-items-center justify-content-center">  
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-7">
+                <input class="btn btn-primary w-100" type="submit", value="ADD">
+            </div>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

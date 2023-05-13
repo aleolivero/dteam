@@ -1,0 +1,70 @@
+{% extends "layout_player.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div class="container d-flex align-items-center flex-column mt-5">
+
+
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <div class="d-flex align-items-center flex-column">
+            
+                <h1 class="mb-0 text-align-center">Chat</h1>
+            
+                <div class="col-lg-6 mx-auto">
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+                </div>
+            
+                <div class="row reflexion justify-content-around align-items-center">
+                    <ul id="chatList" class="list-group p-0 scrollable-chat"> 
+                        {% for chat in chats %} 
+                            <li class="list-group-item pe-0 {% if chat.id in chats_not_read_ids_mark %} list-group-item-info {% endif %}" style="width: 100%;"> 
+                                <b> {{chat.sender}} </b> 
+                                ({{ chat.date }}): 
+                                {{ chat.content }} 
+                                </li> 
+                        {% empty %}
+                        
+                            <li class="list-group-item" style="width: 100%; text-align: center;">There are no chats</li> 
+                        {% endfor %} 
+                    </ul> 
+                    <div class="d-grid gap-5 d-sm-flex justify-content-sm-center mb-3"></div>
+
+                    <form class="border border-light shadow-lg w-100 rounded-3 p-3 mb-3"  action="" method="POST"> {% csrf_token %}
+                        {% for field in form  %}
+            
+                            {% render_field field class+="form-control" %}
+
+                            <div class="list-group mt-3">
+                                {% for error in field.errors %}
+                                <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
+                                {%endfor%}
+                            </div>
+                
+        
+                        {% endfor %}
+                                
+                        <input class="btn btn-primary w-100" type="submit", value="Send">
+                    </form> 
+                </div>
+            
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var chatList = document.getElementById("chatList");
+        chatList.scrollTop = chatList.scrollHeight;
+    });
+</script>
+{% endblock %}
