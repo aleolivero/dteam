@@ -43,12 +43,15 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 
 }
 
 .login-bt:hover{
 background-color: #45a049;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
 }
 
 @media screen and (max-width: 600px) {
@@ -75,5 +78,5 @@ background-color: #45a049;
     font-weight: 500px;
 }
 .login-links .spacer{
-    margin: 0 120px;
+    margin: 0 75px;
 }

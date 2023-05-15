@@ -3,3 +3,30 @@
     top: 7.5%;
     right: 1%;
   }
+
+#background-image{
+  background-image: url( '../img/background-season.jpg'); 
+  background-size: cover;
+}
+
+.custom-nav {
+  position: relative;
+  border-radius: 10px;
+  padding-top: 1rem; /* Añade espacio adicional para el texto en la parte superior */
+}
+
+.custom-nav::before {
+  content: "Staff";
+  position: absolute;
+  top: -0.5rem; /* Posición del texto sobre el borde superior */
+  left: 50%;
+  transform: translateX(-50%); /* Centrar el texto horizontalmente */
+  background-color: #fff; /* Color de fondo igual al de la barra de navegación */
+  padding: 0 0.5rem; /* Espacio alrededor del texto */
+  border-radius: 5px; /* Añade bordes redondeados al texto */
+
+}
+.custom-nav .nav-item {
+  display: flex;
+  align-items: center;
+}

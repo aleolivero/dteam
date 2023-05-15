@@ -7,17 +7,15 @@
 
 {% block content %}
 
-<div class="container-fluid d-flex align-items-center flex-column mt-5 mb-5 px-5" >  
+<div class="container-fluid d-flex align-items-center flex-column px-5 pt-5" >  
 
-    <div class="d-flex justify-content-end w-100">
-        <a class="btn btn-primary mb-3" href="{% url 'questionsPlayerAdd' %}">Make a Question</a>
+    <div class="d-flex justify-content-end w-100 mt-5">
+        <a class="answers-player-bt text-center" href="{% url 'questionsPlayerAdd' %}">¡Hace una pregunta!</a>
     </div>
 
+    <form class="w-100 mb-3"  action="" method="POST"> {% csrf_token %}
 
-
-    <form class="border border-light shadow-lg w-100 rounded-3 p-3 mb-3"  action="" method="POST"> {% csrf_token %}
-
-        <table class="table table-striped table-hover shadow-lg bg-white rounded-3 w-100">
+        <table class="table table-striped table-hover w-100 answers-player-table mt-3">
             <thead>
                 <tr>
 
@@ -43,14 +41,17 @@
                 
             </tbody>
         </table>
-        <tr>
-            <input class="btn btn-primary w-100" type="submit", value="SEARCH">
+        
+        <div class="d-flex justify-content-end">
+            <input class="answers-player-bt" type="submit", value="Filtrar">
+        </div>
 
-        </tr>
     </form>
 
 
-    <table class="table table-striped table-hover border border-light shadow-lg bg-white rounded-3 w-100">
+
+
+    <table class="table table-striped table-hover w-100 answers-player-table mt-0">
         <thead>
             <tr>
                 <th class="col text-center" scope="col">Title</th>
@@ -87,42 +88,42 @@
 
                         <!-- View results -->
                         {% if question.status == 'closed' and question.result == 'determined'  %}
-                            <a class="btn btn-primary mx-1"  href="{% url 'questionsPlayerResult' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="View results"><i class="fa-solid fa-ranking-star"></i></a>
+                            <a class="btn btn-primary mx-1"  href="{% url 'questionsPlayerResult' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Ver resultados"><i class="fa-solid fa-ranking-star"></i></a>
                         {% else %}
-                            <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="View results"><i class="fa-solid fa-ranking-star"></i></a>    
+                            <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Ver resultados"><i class="fa-solid fa-ranking-star"></i></a>    
                         {% endif %}
 
                         <!-- Determinate results -->
                         {% if question.status == 'closed' %}
                             {% if question.result == 'determined' %}
-                                <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Determinate result"><i class="fa-solid fa-trophy"></i></a>
+                                <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Calcular resultados"><i class="fa-solid fa-trophy"></i></a>
                             {% elif question.result == 'undetermined' %}
-                                <a class="btn btn-primary mx-1"  href="{% url 'questions_determined' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Determinate result"><i class="fa-solid fa-trophy"></i></a>
+                                <a class="btn btn-primary mx-1"  href="{% url 'questions_determined' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Calcular resultados"><i class="fa-solid fa-trophy"></i></a>
                             {% endif %}
                         {% elif question.status == 'open' %}
                             {% if question.result == 'determined' %}
-                            <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Determinate result"><i class="fa-solid fa-trophy"></i></a>
+                            <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Calcular resultados"><i class="fa-solid fa-trophy"></i></a>
                             {% elif question.result == 'undetermined' %}
-                                <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Determinate result"><i class="fa-solid fa-trophy"></i></a>
+                                <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Calcular resultados"><i class="fa-solid fa-trophy"></i></a>
                             {% endif %}
                         {% endif %}
 
                         <!-- Open or close  -->
                         {% if question.status == 'open' %}
-                            <a class="btn btn-primary mx-1"  href="{% url 'questions_closed' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Close question"><i class="fa-sharp fa-solid fa-lock"></i></a>
+                            <a class="btn btn-primary mx-1"  href="{% url 'questions_closed' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Cerrar pregunta"><i class="fa-sharp fa-solid fa-lock"></i></a>
                         {% elif question.status == 'closed' %}
-                            <a class="btn btn-primary mx-1"  href="{% url 'questions_open' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Reopen question"><i class="fa-sharp fa-solid fa-unlock"></i></a>
+                            <a class="btn btn-primary mx-1"  href="{% url 'questions_open' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Abrir pregunta"><i class="fa-sharp fa-solid fa-unlock"></i></a>
                         {% endif %}
 
                         <!-- Edit -->
                         {% if question.status == 'open' %}
-                            <a class="btn btn-primary mx-1"  href="{% url 'questionsPlayerEdit' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Edit question"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-primary mx-1"  href="{% url 'questionsPlayerEdit' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Editar pregunta"><i class="fa-solid fa-pen-to-square"></i></a>
                         {% else %}
-                            <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Edit question"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Editar pregunta"><i class="fa-solid fa-pen-to-square"></i></a>
                         {% endif %}
 
                         <!-- Delete -->
-                        <a class="btn btn-danger mx-1"  href="{% url 'questionsPlayerDelete' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Delete question"><i class="fa-solid fa-trash"></i></a>
+                        <a class="btn btn-danger mx-1"  href="{% url 'questionsPlayerDelete' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Eliminar pregunta"><i class="fa-solid fa-trash"></i></a>
 
                     </div>
                 </td>    
@@ -138,9 +139,9 @@
 
     </table>
 
-    <tr>
-        <a class="btn btn-primary w-100" href="{% url 'questionsPlayerView' %}">RESET</a>
-    </tr>
+    <div class="d-flex justify-content-end w-100">
+        <a class="answers-player-bt text-center" href="{% url 'questionsPlayerView' %}">Reset</a>
+    </div>
 
 </div>
 <script>

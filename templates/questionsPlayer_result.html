@@ -7,32 +7,28 @@
 
 
 <div class="container d-flex align-items-center justify-content-center flex-column ">
-
-
-
-    <div class="card bg-white my-3 w-100 border border-light shadow-lg rounded-3">
-        <div class="card-header bg-white"><b>{{question.title}}</b></div>
+    
+    <div class="answers-player-table w-75 mt-3 ">
         <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;">
-            <div style="flex: 1">
-                <h5 class="card-title">{{question.question}}</h5>
-                <p class="card-text"><h4><span class="badge bg-info text-dark">Correct answer: {{question.correct_answer|intcomma}}</span></h4></p>
-                <p class="card-text"><b>Author:</b> {{question.author.user}}</p>
-                <p class="card-text"><b>Category:</b> {{question.category}}</p>
-                <p class="card-text"><b>Date:</b> {{question.date}}</p>
+            
+            <div class='pt-3 ps-3 d-flex flex-column justify-content-center'style="flex: 1">
+                <h3 class="card-title"><b>{{question.question}}</b></h3>
+                <h4>Respuesta Correcta:</h4>
+                <h1><span class="badge bg-info text-dark"><b>{{question.correct_answer|intcomma}}</b></span></h1>
             </div>
-            <div class="justify-content-center align-items-center" style="flex: 1">
-                <div class="text-center">
-                    <h3 class="mb-1"> <b>Winner</b></h3>
-                    <p class="text-muted mb-0"><span class="badge text-bg-success"> + {{points|intcomma}} POINTS</span></p>
 
+            <div class="justify-content-center align-items-center" style="flex: 1">
+                <div class="text-center my-3">
+                    
                     <div class="position-relative">
                         <img src="{% static 'img/winner.png' %}" alt="" class="position-absolute laurel-winner" style="z-index: 2;">
-                        <div class="bg-gold rounded-circle p-1 mx-auto mb-4 shadow" style="width: 150px; height: 150px; z-index: 1; position: relative;">
+                        <div class="bg-gold rounded-circle p-1 mx-auto mb-1 shadow" style="width: 150px; height: 150px; z-index: 1; position: relative;">
                             <img src='{{winner.0.player.image|url}}' alt="Gold" class="w-100 h-100 avatar-podium">
                         </div>
                     </div>
-                    <h3 class="mb-0">{{winner.0.player.user}}</h3>
-                    <p>{{ winner.player.first_name }} {{ winner.player.last_name }} &nbsp</p>
+                    <h3 class="mb-1"> <b>{{winner.0.player.user}}</b></h3>
+                    {% if winner.0.player.first_name %} <h5 class="mb-1"> {{winner.0.player.first_name}} {{winner.0.player.last_name}} </h5> {% endif %}
+                    <h5><span class="badge text-bg-success"><b>+ {{points|intcomma}} PUNTOS</b></span></h5>
 
                 </div>
             </div>
@@ -42,22 +38,22 @@
 
 
     
-    <table class="table align-middle mt-3 mb-3 bg-white  border border-light shadow-lg w-100 rounded-3">
+    <table class="answers-player-table w-75 align-middle my-3 ">
         
 
-        <thead class="bg-light">
+        <thead>
             
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">User</th>
-                <th scope="col"> Answer </th>
-                <th scope="col"> Closest </th>
+            <tr class="">
+                <th scope="col"><h3 class="my-3" ><b>#</b></h3></th>
+                <th scope="col"><h3><b>Jugador</b></h3></th>
+                <th scope="col"> <h3><b>Respuesta</b></h3> </th>
+                <th scope="col"> <h3><b>Proximidad</b></h3> </th>
                 
             </tr>
 
         </thead>
         
-        <tbody>
+        <tbody class="align-middle">
 
             {% for answer in answers %}
 
@@ -69,19 +65,19 @@
             
                 <tr class="{{current_user}}">
 
-                    <th scope="row">{{ forloop.counter }}</th>
+                    <td scope="col">{{ forloop.counter }}</td>
 
-                    <td>
+                    <td scope="col" style="padding-left: 10%; padding-top: 15px;">
                         <div class="d-flex align-items-center">
 
                             <img
                               src="{{ answer.player.image|url }}"
                               alt=""
-                              style="width: 45px; height: 45px"
+                              style="width: 45px; height: 45px;"
                               class="rounded-circle"
                               />
 
-                            <div class="ms-3">
+                            <div class="ms-3 text-start">
                                 <p class="fw-bold mb-1">{{ answer.player.first_name }} {{ answer.player.last_name }} &nbsp</p>
                                 <p class="text-muted mb-0">{{ answer.player.user }}  {% if answer in winner %} <span class="badge text-bg-success">Winner</span> {% endif %} </p>
                             </div>
@@ -90,8 +86,8 @@
 
                     </td>
 
-                    <td>{{ answer.answer|intcomma }}</td>
-                    <td>{{ answer.closest|intcomma }}</td>
+                    <td scope="col">{{ answer.answer|intcomma }}</td>
+                    <td scope="col">{{ answer.closest|intcomma }}</td>
 
                 </tr>
 

@@ -4,48 +4,28 @@
 
 {% block content %}
 
+<form class="login-box my-3"  action="" method="POST" enctype="multipart/form-data" > {% csrf_token %}
 
-<div class="container d-flex align-items-center flex-column mt-5">  
+    <h2 class='mb-3' style="text-align: center; font-family: 'Poppins', sans-serif; color: #83617A;"><b>¡Edita tu perfil!</b></h2>
 
-    <form class="border border-light shadow-lg w-50 rounded-3 p-3"  action="" method="POST" enctype="multipart/form-data" > {% csrf_token %}
 
-        <div class="row mb-3 align-items-center justify-content-center">  
-
-            <div class="col-sm-8 text-center mt-3">
-                <h1>Edit Profile</h1>
-            </div>
+    {% for field in form  %}
         
-        </div>
 
+    <label class="login-label my-0" for="{{field.auto_id}}">{{ field.label }}</label>
 
-        {% for field in form %}
+    {% render_field field class+="login-form" placeholder=field.label %}
+    
+    <div class="list-group mt-1">
+        {% for error in field.errors %}
+        <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
+        {%endfor%}
+    </div>
 
-            <!-- field -->
-            <div class="row align-items-center justify-content-center">        
+    {% endfor %}
+    
+    <input class="login-bt" type="submit", value="Editar">
 
-                <label class="col-sm-3 col-form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-                <div class="col-sm-9">
-                    {% render_field field class+="form-control" %}
-                </div>
-
-                <div class="list-group mt-3">
-                    {% for error in field.errors %}
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
-                    {%endfor%}
-                </div>
-
-            </div>
-
-        {% endfor %}
-        
-        <!-- Update -->
-        <div class="row mb-3 align-items-center justify-content-center">  
-
-            <div class="col-sm-8">
-                <input class="btn btn-primary w-100" type="submit", value="Update">
-            </div>
-        
-        </div>
 
     </form>
 

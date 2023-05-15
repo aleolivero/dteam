@@ -5,20 +5,20 @@
 {% block content %}
 
 
-<div class="container d-flex align-items-center flex-column mt-5">
+<div class="container d-flex align-items-center flex-column">
 
 
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3"></div>
 
     <div class="row">
         <div class="col-sm-12">
 
             <div class="d-flex align-items-center flex-column">
             
-                <h1 class="mb-0 text-align-center">Chat</h1>
+                <h1 class="mb-0 text-align-center"><b>Chat</b></h1>
             
                 <div class="col-lg-6 mx-auto">
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5"></div>
+                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-3"></div>
                 </div>
             
                 <div class="row reflexion justify-content-around align-items-center">
@@ -36,10 +36,10 @@
                     </ul> 
                     <div class="d-grid gap-5 d-sm-flex justify-content-sm-center mb-3"></div>
 
-                    <form class="border border-light shadow-lg w-100 rounded-3 p-3 mb-3"  action="" method="POST"> {% csrf_token %}
+                    <form class=""  action="" method="POST"> {% csrf_token %}
                         {% for field in form  %}
             
-                            {% render_field field class+="form-control" %}
+                            {% render_field field class+="form-control shadow-lg w-100 rounded-3 p-3 mb-3" %}
 
                             <div class="list-group mt-3">
                                 {% for error in field.errors %}
@@ -50,7 +50,7 @@
         
                         {% endfor %}
                                 
-                        <input class="btn btn-primary w-100" type="submit", value="Send">
+                        <input class="login-bt w-100" type="submit", value="Send">
                     </form> 
                 </div>
             

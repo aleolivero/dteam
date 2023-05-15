@@ -1,0 +1,4 @@
+.scrollable-chat {
+  max-height: 400px; /* ajusta este valor según la altura deseada */
+  overflow-y: auto;
+}

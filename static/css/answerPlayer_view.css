@@ -1,0 +1,34 @@
+.answers-player-table{
+    border-radius: 10px;
+    background-color: hsla(0, 0%, 98%, 0.616);
+    backdrop-filter:  blur(10px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    text-align: center;
+    margin-top: 5%; 
+
+
+}
+
+.answers-player-bt{
+    background-color: #FFA15F;
+    font-family: 'Poppins', sans-serif;
+    width: 25%;
+    height: 45px;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.answers-player-bt:hover{
+background-color: #45a049;
+color: white;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
