@@ -6,7 +6,7 @@
     width: 100%;
     padding: 20px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.26);
+    background-color: rgb(169, 221, 243, 0.26);
     backdrop-filter:  blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     /* z-index: 1; */
@@ -34,7 +34,7 @@
 
 }
 .login-bt{
-    background-color: #FFA15F;
+    background-color: #217093;
     font-family: 'Poppins', sans-serif;
     width: 90%;
     height: 45px;
@@ -49,7 +49,7 @@
 }
 
 .login-bt:hover{
-background-color: #45a049;
+background-color: #4eb8dd;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }
@@ -71,7 +71,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .login-links a {
-    color: #83617A;
+    color: #ddf1fa;
     text-decoration: none;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
