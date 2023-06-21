@@ -3,7 +3,7 @@
     width: 100%;
     padding: 20px;
     border-radius: 10px;
-    background-color: hsla(0, 0%, 98%, 0.616);
+    background-color: rgb(169, 221, 243, 0.50);
     backdrop-filter:  blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -14,7 +14,7 @@
 }
 
 .index-bt{
-    background-color: #FFA15F;
+    background-color: #217093;
     font-family: 'Poppins', sans-serif;
     width: 100%;
     height: 45px;
@@ -30,8 +30,8 @@
 }
 
 .index-bt:hover{
-background-color: #45a049;
-color: white;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #4eb8dd;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }

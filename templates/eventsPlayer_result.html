@@ -9,7 +9,7 @@
 
 <div class="container d-flex align-items-center justify-content-center flex-column ">  
     <div class="mt-3 w-50 text-center">
-        <h1 class="login-label">Ranking del Evento</h1>
+        <h1 class="login-label my-3">Ranking del Evento</h1>
     </div>
 
 
@@ -21,10 +21,11 @@
                 <div class="position-relative mb-3">
                     <img src="{% static 'img/silver1.png' %}" alt="Laurel" class="position-absolute laurel-silver" style="z-index: 2;">
                     <div class="bg-silver rounded-circle p-1 mx-auto mb-3 shadow" style="width: 170px; height: 170px; z-index: 1; position: relative;">
-                        <img src='{{podium.1.player.image|url}}' alt="Silver" class="w-100 h-100 avatar-podium">
+                        <img src='{{podium.1.image|url}}' alt="Silver" class="w-100 h-100 avatar-podium">
                     </div>
                 </div>
-                <h4 class="mb-0 mt-5">{% if podium.1.player.user %} {{podium.1.player.user}} {% else %} &nbsp {% endif %}</h4>
+                <h3 class="fw-bold mb-0 mt-4">2°</h3>
+                <h4 class="mb-0 mt-0">{% if podium.1.user %} {{podium.1.user}} {% else %} &nbsp {% endif %}</h4>
                 <p>&nbsp</p>
             </div>
             
@@ -32,20 +33,22 @@
                 <div class="position-relative">
                     <img src="{% static 'img/gold1.png' %}" alt="" class="position-absolute laurel-gold" style="z-index: 2;">
                     <div class="bg-gold rounded-circle p-1 mx-auto mb-4 shadow" style="width: 230px; height: 230px; z-index: 1; position: relative;">
-                        <img src='{{podium.0.player.image|url}}' alt="Gold" class="w-100 h-100 avatar-podium">
+                        <img src='{{podium.0.image|url}}' alt="Gold" class="w-100 h-100 avatar-podium">
                     </div>
                 </div>
-                <h2 class="mb-0 mt-5">{% if podium.0.player.user %} {{podium.0.player.user}} {% else %} &nbsp {% endif %}</h2>
+                <h1 class="fw-bold mb-0 mt-4">1°</h1>
+                <h2 class="mb-0 mt-0">{% if podium.0.user %} {{podium.0.user}} {% else %} &nbsp {% endif %}</h2>
                 <p>&nbsp</p>
             </div>
             <div class="col-2 text-center">
                 <div class="position-relative">
                     <img src="{% static 'img/bronze.png' %}" alt="Laurel" class="position-absolute laurel-bronze" style="z-index: 2;">
                     <div class="bg-bronze rounded-circle p-1 mx-auto mb-3 shadow" style="width: 130px; height: 130px; z-index: 1; position: relative;">
-                        <img src='{{podium.2.player.image|url}}' alt="Bronze" class="w-100 h-100 avatar-podium">
+                        <img src='{{podium.2.image|url}}' alt="Bronze" class="w-100 h-100 avatar-podium">
                     </div>
                 </div>
-                <h5 class="mb-0 mt-5">{% if podium.2.player.user %} {{podium.2.player.user}} {% else %} &nbsp {% endif %}</h5>
+                <h4 class="fw-bold mb-0 mt-4">3°</h4>
+                <h5 class="mb-0 mt-0">{% if podium.2.user %} {{podium.2.user}} {% else %} &nbsp {% endif %}</h5>
                 <p>&nbsp</p>
             </div>
         </div>
@@ -53,9 +56,9 @@
             <div class="row justify-content-center">
                 <div class="col-4 text-center">
                     <div class="bg-light rounded p-1 mx-auto mb-3 shadow" style="width: 110px; height: 110px;">
-                        <img src='{{podium.4.player.image|url}}' alt="Mención Honorífica" class="w-100 h-100">
+                        <img src='{{podium.4.image|url}}' alt="Mención Honorífica" class="w-100 h-100">
                     </div>
-                    <h5 class="mb-0">{% if podium.3.player.user %} {{podium.3.player.user}} {% else %} &nbsp {% endif %}</h5>
+                    <h5 class="mb-0">{% if podium.3.user %} {{podium.3.user}} {% else %} &nbsp {% endif %}</h5>
                     <p>&nbsp</p>
                 </div>
             </div>
@@ -80,7 +83,7 @@
 
             {% for score in scores %}
 
-                {% if score.player.user == request.user %}
+                {% if score.user == request.user %}
                     {% define "table-info" as current_user %}
                 {% else %}
                     {% define "" as current_user %}
@@ -97,7 +100,7 @@
                         <div class="d-flex align-items-center">
 
                             <img
-                              src="{{ score.player.image|url }}"
+                              src="{{ score.image|url }}"
                               alt=""
                               style="width: 45px; height: 45px;"
                               class="rounded-circle"
@@ -105,8 +108,8 @@
 
 
                               <div class="ms-3 text-start">
-                                <p class="fw-bold mb-1">{{ score.player.first_name }} {{ score.player.last_name }} {% if event.status == 'closed' %}{% if forloop.counter == 1 %} <span class="badge text-bg-success">Winner</span> {% endif %}{% endif %} </p>
-                                <p class="text-muted mb-0">{{ score.player.user }}</p>
+                                <p class="fw-bold mb-1">{{ score.first_name }} {{ score.last_name }} {% if event.status == 'closed' %}{% if forloop.counter == 1 %} <span class="badge text-bg-success">Ganador</span> {% endif %}{% endif %} </p>
+                                <p class="mb-0" style="color: #171F2C;">{{ score.user }}</p>
                             </div>
 
                         </div>

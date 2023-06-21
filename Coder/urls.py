@@ -66,6 +66,7 @@ urlpatterns = [
     path('editProfile/', views.editProfile, name='editProfile'),
     path('about/', views.about, name='about'),
 
+    path('questionsPlayer/ajax/responded_players/<int:question_id>/', views.get_responded_players, name='ajax_responded_players'),
 
 
 

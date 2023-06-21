@@ -1,17 +1,17 @@
 .answers-player-table{
     border-radius: 10px;
-    background-color: hsla(0, 0%, 98%, 0.616);
+    background-color: rgb(169, 221, 243, 0.50);
     backdrop-filter:  blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1;
     text-align: center;
-    margin-top: 5%; 
-
-
+    margin-top: 5%;
+    border-bottom: 0px rgb(169, 221, 243, 0.0)
 }
 
 .answers-player-bt{
-    background-color: #FFA15F;
+    background-color: #217093;;
+    
     font-family: 'Poppins', sans-serif;
     width: 25%;
     height: 45px;
@@ -27,8 +27,8 @@
 }
 
 .answers-player-bt:hover{
-background-color: #45a049;
-color: white;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #4eb8dd;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }

@@ -11,7 +11,7 @@
 
     <div class="answers-player w-100 mt-5 rounded-3">
         
-        <h1 class="my-3 text-center"><b>Eventos</b></h1>
+        <h1 class="text-center my-3" style="color: #171F2C;"><b>¡ Eventos !</b> </h1>
         
         <div class="answers-player">
 
@@ -21,7 +21,7 @@
 
                 <div class="">
 
-                    <button class="accordion-button collapsed rounded-3 shadow-lg" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{forloop.counter}}" aria-expanded="false" aria-controls="flush-collapse{{forloop.counter}}">
+                    <button class="accordion-button collapsed rounded-3 shadow-lg" style="background-color: #ddf1fa" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{forloop.counter}}" aria-expanded="false" aria-controls="flush-collapse{{forloop.counter}}">
                         <div class="d-flex justify-content-between align-items-center w-100">
                             
 
@@ -126,9 +126,9 @@
                                             <!-- View Results -->
 
                                             {% if question.result == 'determined' %}
-                                                <a class="btn btn-primary mx-1"  href="{% url 'questionsPlayerResult' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="View results"><i class="fa-solid fa-ranking-star"></i></a>
+                                                <a class="btn btn-primary mx-1"  href="{% url 'questionsPlayerResult' question.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Ver resultados"><i class="fa-solid fa-ranking-star"></i></a>
                                             {% else %}
-                                                <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="View results"><i class="fa-solid fa-ranking-star"></i></a>
+                                                <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Ver resultados"><i class="fa-solid fa-ranking-star"></i></a>
                                             {% endif %}                                            
 
 
@@ -138,24 +138,24 @@
                                             {% if question.status == 'closed' or event.status == 'closed' %}
                                             
                                                 {% if question.has_answer %}
-                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Edit answer"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Delete answer"><i class="fa-solid fa-trash"></i></a>
+                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Editar respuesta"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Borrar respuesta"><i class="fa-solid fa-trash"></i></a>
 
                                                 {% else %}
-                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Answer"><i class="fa-regular fa-square-plus"></i></a>
-                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Delete answer"><i class="fa-solid fa-trash"></i></a>
+                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Responder"><i class="fa-regular fa-square-plus"></i></a>
+                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Borrar respuesta"><i class="fa-solid fa-trash"></i></a>
 
                                             {% endif %}
                                             
                                             {% elif question.status == 'open' %}
 
                                                 {% if question.has_answer %}
-                                                    <a class="btn btn-primary mx-1"  href="{% url 'answersPlayerEdit' question.user_answers.0.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Edit answer"><i class="fa-solid fa-pen-to-square"></i></a>
-                                                    <a class="btn btn-danger mx-1"  href="{% url 'answersPlayerDelete' question.user_answers.0.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Delete answer"><i class="fa-solid fa-trash"></i></a>
+                                                    <a class="btn btn-primary mx-1"  href="{% url 'answersPlayerEdit' question.user_answers.0.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Editar respuesta"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                    <a class="btn btn-danger mx-1"  href="{% url 'answersPlayerDelete' question.user_answers.0.id %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Borrar respuesta"><i class="fa-solid fa-trash"></i></a>
                                                 
                                                 {% else %}
-                                                    <a class="btn btn-primary mx-1"  href="{% url 'answersPlayerAdd' question.id  %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Answer"><i class="fa-regular fa-square-plus"></i></a>
-                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Delete answer"><i class="fa-solid fa-trash"></i></a>
+                                                    <a class="btn btn-primary mx-1"  href="{% url 'answersPlayerAdd' question.id  %}" data-bs-toggle="tooltip"  data-bs-placement="top" title="Responder"><i class="fa-regular fa-square-plus"></i></a>
+                                                    <a class="btn btn-secondary mx-1"  href="#" data-bs-toggle="tooltip"  data-bs-placement="top" title="Borrar respuesta"><i class="fa-solid fa-trash"></i></a>
 
                                                 {% endif %}
 
@@ -169,7 +169,7 @@
                                 </tr>
                                 {% empty %}
                                 <tr>
-                                    <td colspan="11" class="w-10 text-center"> There are no questions </th>
+                                    <td colspan="11" class="w-10 text-center"> No hay preguntas </th>
                                 </tr> 
 
 

@@ -2,11 +2,12 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.urls import reverse
 from .models import Players, Answers, Questions, PlayerScore, Event, QuestionsRules
 from .forms import FormPlayers, FormAnswersPlayer, FormQuestions, SignUpForm, FormEditAccount, FormProfile, FormSearchQuestions, FormSearchPlayers, FormSearchAnswers,FormQuestionsPlayers,FormAnswers, FormSearchQuestionsRules, FormQuestionsRules, FormSearchEvents,FormEvents
-from django.db.models import Q, F, FloatField, ExpressionWrapper, DateField, CharField,Exists, OuterRef, Prefetch, Sum
-from django.db.models.functions import Cast, Abs
+from django.db.models import Q, F, FloatField, ExpressionWrapper, DateField, CharField,Exists, OuterRef, Prefetch, Sum,Subquery, Sum
+from django.db.models.functions import Cast, Abs, Coalesce
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.http import JsonResponse
 
 import os
 # Create your views here.
@@ -832,19 +833,35 @@ def eventsPlayer_result(request, id):
     
     _event = Event.objects.get(pk=id)
 
-    _scores = (PlayerScore.objects.filter(winner_answer__question__event__id=id)
-              .values('winner_answer__player')
-              .annotate(total_points=Sum('points'))
-              .order_by('-total_points'))
+
+
+
+
+    # Creamos una subconsulta que sumará los puntos para un jugador determinado.
+    player_scores_subquery = PlayerScore.objects.filter(
+        winner_answer__player=OuterRef('pk'),  # Referimos al 'pk' (clave primaria) del jugador en la consulta principal.
+        winner_answer__question__event__id=id
+    ).values(
+        'winner_answer__player'  # Agrupamos por jugador.
+    ).annotate(
+        total_points=Sum('points')  # Sumamos los puntos.
+    ).values('total_points')  # Seleccionamos solo la suma de puntos.
+
+    players_with_points = Players.objects.annotate(
+    total_points=Coalesce(
+        Subquery(player_scores_subquery),  # Aquí usamos la subconsulta.
+        0.0  # Si un jugador no tiene puntos (i.e., la subconsulta no devuelve nada), usamos cero.
+    )
+    ).order_by('-total_points')
+
+    # _scores = PlayerScore.objects.filter(winner_answer__question__event__id=id).values('winner_answer__player').annotate(total_points=Sum('points')).order_by('-total_points')
     
-    players_with_points = []
+    # players_with_points = []
 
-    for score in _scores:
-        player = Players.objects.get(pk=score['winner_answer__player'])
-        total_points = score['total_points']
-        players_with_points.append({'player':player, 'total_points':total_points})
-
-
+    # for score in _scores:
+    #     player = Players.objects.get(pk=score['winner_answer__player'])
+    #     total_points = score['total_points']
+    #     players_with_points.append({'player':player, 'total_points':total_points})
 
 
     params['event'] = _event
@@ -1289,3 +1306,15 @@ def events_delete(request,id):
     _event = _event.delete()
     
     return redirect(reverse('events_view'))
+
+
+from django.http import JsonResponse
+
+def get_responded_players(request, question_id):
+    # Suponiendo que tienes un modelo Question y un modelo Player
+    if request.method == 'GET':
+
+        answers = Answers.objects.filter(question_id=question_id)
+        players = [answer.player.__str__() for answer in answers]
+
+        return JsonResponse(players, safe=False)
