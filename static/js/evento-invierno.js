@@ -2,6 +2,9 @@ var emailLabel = document.querySelector('#id_Username'), email = document.queryS
 var activeElement, curEmailIndex, screenCenter, svgCoords, emailCoords, emailScrollMax, chinMin = .5, dFromC, mouthStatus = "small", blinking, eyeScale = 1, eyesCovered = false, showPasswordClicked = false;
 var eyeLCoords, eyeRCoords, noseCoords, mouthCoords, eyeLAngle, eyeLX, eyeLY, eyeRAngle, eyeRX, eyeRY, noseAngle, noseX, noseY, mouthAngle, mouthX, mouthY, mouthR, chinX, chinY, chinS, faceX, faceY, faceSkew, eyebrowSkew, outerEarX, outerEarY, hairX, hairS;
 
+
+
+
 function calculateFaceMove(e) {
 	var 	
 		carPos = email.selectionEnd,
@@ -90,6 +93,7 @@ function onEmailInput(e) {
 		if(mouthStatus == "small") {
 			mouthStatus = "medium";
 			TweenMax.to([mouthBG, mouthOutline, mouthMaskPath], 1, {morphSVG: mouthMediumBG, shapeIndex: 8, ease: Expo.easeOut});
+			console.log(tooth)
 			TweenMax.to(tooth, 1, {x: 0, y: 0, ease: Expo.easeOut});
 			TweenMax.to(tongue, 1, {x: 0, y: 1, ease: Expo.easeOut});
 			TweenMax.to([eyeL, eyeR], 1, {scaleX: .85, scaleY: .85, ease: Expo.easeOut});
