@@ -19,7 +19,7 @@
     width: 100%;
     height: 45px;
     color: white;
-    padding: 10px 20px;
+    padding: 10px 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -28,7 +28,12 @@
 
 
 }
-
+@media screen and (max-width: 1590px) {
+    .index-bt{
+        padding: 10px 0px;
+    }
+    
+}
 .index-bt:hover{
     background-color: #4eb8dd;
     color: white;

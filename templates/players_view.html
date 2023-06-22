@@ -6,26 +6,26 @@
 {% block content %}
 
 
-<div class="container-fluid d-flex align-items-center flex-column mt-5 w-100 px-3">
+<div class="container-fluid d-flex align-items-center flex-column px-5 pt-5" >  
 
-    <div class="d-flex justify-content-end w-100">
-        <a class="btn btn-primary mb-3" href="{% url 'players_add' %}">Add Player</a>
+    <div class="d-flex justify-content-end w-100 mt-5">
+        <a class="answers-player-bt text-center mt-1" href="{% url 'players_add' %}">Agregar jugador</a>
     </div>
-   
-    <form class="border border-light shadow-lg w-100 rounded-3 mb-3 "  action="" method="POST"> {% csrf_token %}
 
-        <table class="table table-striped table-hover shadow-lg bg-white rounded-3 w-100">
+    <form class="w-100 mb-3"  action="" method="POST"> {% csrf_token %}
+
+        <table class="table table-striped table-hover w-100 answers-player-table mt-3">
             
             <thead>
                 <tr>
-                    <th class="col text-center" scope="col">First Name</th>
-                    <th class="col text-center" scope="col">Last Name</th>
-                    <th class="col text-center" scope="col">Birth</th>
-                    <th class="col text-center" scope="col">Phone</th>
-                    <th class="col text-center" scope="col">Adress</th>
-                    <th class="col text-center" scope="col">City</th>
-                    <th class="col text-center" scope="col">State</th>
-                    <th class="col text-center" scope="col">Country</th>
+                    <th class="col text-center" scope="col">Nombre</th>
+                    <th class="col text-center" scope="col">Apellido</th>
+                    <th class="col text-center" scope="col">Fecha Nacimiento</th>
+                    <th class="col text-center" scope="col">Celular</th>
+                    <th class="col text-center" scope="col">Direccion</th>
+                    <th class="col text-center" scope="col">Ciudad</th>
+                    <th class="col text-center" scope="col">Provincia</th>
+                    <th class="col text-center" scope="col">Pais</th>
 
                 </tr>
             </thead>
@@ -46,29 +46,29 @@
 
         </table>
 
-        <tr>
-            <input class="btn btn-primary w-100" type="submit", value="SEARCH">
-        </tr>
+        <div class="d-flex justify-content-end">
+            <input class="answers-player-bt" type="submit", value="Filtrar">
+        </div>
 
     </form>
 
 
 
-    <table class="table table-striped table-hover border border-light shadow-lg bg-white rounded-3 w-100">
+    <table class="table table-striped table-hover w-100 answers-player-table mt-0">
 
         <thead>
             <tr>
-                <th class="col text-center" scope="col">User</th>
+                <th class="col text-center" scope="col">Usuario</th>
                 <th class="col text-center" scope="col">Avatar</th>
-                <th class="col text-center" scope="col">First Name</th>
-                <th class="col text-center" scope="col">Last Name</th>
-                <th class="col text-center" scope="col">Birth</th>
-                <th class="col text-center" scope="col">Phone</th>
-                <th class="col text-center" scope="col">Adress</th>
-                <th class="col text-center" scope="col">City</th>
-                <th class="col text-center" scope="col">State</th>
-                <th class="col text-center" scope="col">Country</th>
-                <th class="col text-center" scope="col">Options</th>
+                <th class="col text-center" scope="col">Nombre</th>
+                <th class="col text-center" scope="col">Apellido</th>
+                <th class="col text-center" scope="col">Fecha Nacimiento</th>
+                <th class="col text-center" scope="col">Celular</th>
+                <th class="col text-center" scope="col">Direccion</th>
+                <th class="col text-center" scope="col">Ciudad</th>
+                <th class="col text-center" scope="col">Provincia</th>
+                <th class="col text-center" scope="col">Pais</th>
+                <th class="col text-center" scope="col">Opciones</th>
 
             </tr>
         
@@ -116,10 +116,10 @@
 
     </table>
 
-    <tr>
-        <a class="btn btn-primary w-100" href="{% url 'players_view' %}">RESET</a>
-    </tr>
-
+    <div class="d-flex justify-content-end w-100">
+        <a class="answers-player-bt text-center" href="{% url 'players_view' %}">Reset</a>
+    </div>
+    
 </div>
 
 

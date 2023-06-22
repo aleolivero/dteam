@@ -5,48 +5,30 @@
 {% block content %}
 
 
-<div class="container d-flex align-items-center flex-column mt-5">  
 
-    <form class="border border-light shadow-lg w-100 rounded-3 p-3"  action="" method="POST"> {% csrf_token %}
+    <form class="login-box mt-3"  action="" method="POST"> {% csrf_token %}
 
 
-        <div class="row mb-3 align-items-center justify-content-center border-bottom">  
-            <div class="text-center">
-                <h1>Edit an Event</h1>
-            </div>
-        </div>
+        <h2 class='mb-3' style="text-align: center; font-family: 'Poppins', sans-serif; color: #171F2C;"><b>¡Edita el evento!</b></h2>
 
-        <div class="row mb-1 align-items-center justify-content-center">  
-
-            {% for field in form  %}
-            
-                <div class="row mb-1 align-items-center justify-content-center">        
-                    <label class="col-sm-2 col-form-label" for="{{field.auto_id}}">{{ field.label }}</label>
-                    <div class="col-sm-6">
-                        {% render_field field class+="form-control" %}
-                    </div>
-                    <div class="list-group mt-3">
-                        {% for error in field.errors %}
-                        <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
-                        {%endfor%}
-                    </div>
+        {% for field in form  %}
         
-                </div>
 
-            {% endfor %}
+            <label class="login-label my-0" for="{{field.auto_id}}">{{ field.label }}</label>
 
-        </div>
-
-
-        <div class="row mb-1 align-items-center justify-content-center">  
-            <label class="col-sm-2 col-form-label"></label>
-            <div class="col-sm-6">
-                <input class="btn btn-primary w-100" type="submit", value="Update">
+            {% render_field field class+="login-form" placeholder=field.label %}
+            
+            <div class="list-group mt-1">
+                {% for error in field.errors %}
+                <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
+                {%endfor%}
             </div>
-        </div>
+
+        {% endfor %}
+
+        <input class="login-bt" type="submit", value="Editar">
 
     </form>
 
-</div>
 
 {% endblock %}

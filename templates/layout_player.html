@@ -67,21 +67,23 @@
 
                     <ul class="navbar-nav ms-auto border custom-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'players_view' %}">Players</a>
+                            <a class="nav-link" href="{% url 'players_view' %}">Jugadores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'answers_view' %}">Answers</a>
+                            <a class="nav-link" href="{% url 'answers_view' %}">Respuestas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'questions_view' %}">Questions</a>
+                            <a class="nav-link" href="{% url 'questions_view' %}">Preguntas</a>
                         </li>                    
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'questionRules_view' %}">Question Rules</a>
+                            <a class="nav-link" href="{% url 'questionRules_view' %}">Reglas</a>
                         </li>                    
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'events_view' %}">Events</a>
+                            <a class="nav-link" href="{% url 'events_view' %}">Eventos</a>
                         </li>                    
-                    
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                        </li>                         
 
 
                     </ul>
@@ -140,7 +142,7 @@
 
 <div id="background-image" class="d-flex align-items-center flex-column min-vh-100">
     <div id="alert-season">
-        <h1 ><span class="badge text-bg-primary opacity-25  mt-3">Evento Invierno 2023</span></h1>
+        <h1 ><span class="badge text-bg-light opacity-25  mt-5">Evento Invierno 2023</span></h1>
     </div>
 
     {% block content%}

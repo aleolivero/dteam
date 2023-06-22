@@ -6,17 +6,16 @@
 {% block content %}
 
 
-<div class="container d-flex align-items-center flex-column mt-5 "> 
+<div class="container-fluid d-flex align-items-center flex-column px-5 pt-5" >  
     
-    <div class="d-flex justify-content-end w-100">
-        <a class="btn btn-primary mb-3" href="{% url 'answers_add' %}">Add an Answer</a>
+    <div class="d-flex justify-content-end w-100 mt-5">
+        <a class="answers-player-bt text-center mt-1" href="{% url 'answers_add' %}">Agregar una respuesta</a>
     </div>
-
     
 
-    <form class="border border-light shadow-lg w-100 rounded-3 p-3 mb-3"  action="" method="POST"> {% csrf_token %}
+    <form class="w-100 mb-3"  action="" method="POST"> {% csrf_token %}
 
-        <table class="table table-striped table-hover shadow-lg bg-white rounded-3 w-100">
+        <table class="table table-striped table-hover w-100 answers-player-table mt-3">
             <thead>
                 <tr>
 
@@ -38,20 +37,20 @@
                 
             </tbody>
         </table>
-        <tr>
-            <input class="btn btn-primary w-100" type="submit", value="SEARCH">
-        </tr>
+        <div class="d-flex justify-content-end">
+            <input class="answers-player-bt" type="submit", value="Filtrar">
+        </div>
     </form>
 
 
-    <table class="table table-striped table-hover border border-light shadow-lg bg-white rounded-3 w-100">
+    <table class="table table-striped table-hover w-100 answers-player-table mt-0">
         <thead>
             <tr>
-                <th class="w-10 text-center" scope="col">Event</th>
-                <th class="w-10 text-center" scope="col">Question</th>
-                <th class="w-10 text-center" scope="col">Player</th>
-                <th class="w-10 text-center" scope="col">Answer</th>
-                <th class="w-10 text-center" scope="col">Options</th>
+                <th class="w-10 text-center" scope="col">Evento</th>
+                <th class="w-10 text-center" scope="col">Pregunta</th>
+                <th class="w-10 text-center" scope="col">Jugador</th>
+                <th class="w-10 text-center" scope="col">Respuesta</th>
+                <th class="w-10 text-center" scope="col">Opciones</th>
 
 
             </tr>
@@ -78,7 +77,7 @@
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4" class="w-10 text-center"> There are no answers </th>
+                <td colspan="4" class="w-10 text-center"> No hay respuestas </th>
             </tr> 
 
             {% endfor %}
@@ -86,10 +85,9 @@
         </tbody>
 
     </table>
-
-    <tr>
-        <a class="btn btn-primary w-100" href="{% url 'answers_view' %}">RESET</a>
-    </tr>
+    <div class="d-flex justify-content-end w-100">
+        <a class="answers-player-bt text-center" href="{% url 'answers_view' %}">Reset</a>
+    </div>
 
 </div>
 

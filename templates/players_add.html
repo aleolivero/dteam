@@ -4,43 +4,28 @@
 
 {% block content %}
 
-<div class="container d-flex align-items-center flex-column mt-5">  
+<form class="login-box my-3"  action="" method="POST" enctype="multipart/form-data" > {% csrf_token %}
 
-    <form class="border border-light shadow-lg w-100 rounded-3 p-3"  action="" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    <h2 class='mb-3' style="text-align: center; font-family: 'Poppins', sans-serif; color: #171F2C;"><b>¡Agregar jugador !</b></h2>
 
-        <div class="row mb-1 align-items-center justify-content-center">  
-            <label class="col-sm-1 col-form-label"></label>
-            <div class="col-sm-7 text-center">
-                <h1>Form Add Players</h1>
-            </div>
-        </div>
 
-        {% for field in form %}
+    {% for field in form  %}
+        
 
-            <!-- field -->
-            <div class="row align-items-center justify-content-center">        
+    <label class="login-label my-0" for="{{field.auto_id}}">{{ field.label }}</label>
 
-                <label class="col-sm-3 col-form-label" for="{{ field.auto_id }}">{{ field.label }}</label>
-                <div class="col-sm-9">
-                    {% render_field field class+="form-control" %}
-                </div>
+    {% render_field field class+="login-form" placeholder=field.label %}
+    
+    <div class="list-group mt-1">
+        {% for error in field.errors %}
+        <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
+        {%endfor%}
+    </div>
 
-                <div class="list-group mt-3">
-                    {% for error in field.errors %}
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-warning mb-3">{{error}}</a>
-                    {%endfor%}
-                </div>
+    {% endfor %}
+    
+    <input class="login-bt" type="submit", value="Agregar">
 
-            </div>
-
-        {% endfor %}
-
-        <div class="row mb-1 align-items-center justify-content-center">  
-            <label class="col-sm-1 col-form-label"></label>
-            <div class="col-sm-7">
-                <input class="btn btn-primary w-100" type="submit", value="ADD">
-            </div>
-        </div>
 
     </form>
 
