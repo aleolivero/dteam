@@ -79,7 +79,7 @@
 
                             <div class="ms-3 text-start">
                                 <p class="fw-bold mb-1">{{ answer.player.first_name }} {{ answer.player.last_name }} &nbsp</p>
-                                <p class="mb-0" style="color: #171F2C;">{{ answer.player.user }}  {% if answer in winner %} <span class="badge text-bg-success">Ganador</span> {% elif answer in last %} <span class="badge text-bg-danger">{{question.question_rule.label_last_position}}</span> {% endif %} </p>
+                                <p class="mb-0" style="color: #171F2C;">{{ answer.player.user }}  {% if answer in winner %} <span class="badge text-bg-success">Ganador</span> {% elif answer in last %} {% if question.question_rule.last_position_penalty %}<span class="badge text-bg-danger">{{question.question_rule.label_last_position}}</span> {% endif %}{% endif %} </p>
                             </div>
 
                         </div>
