@@ -239,6 +239,10 @@ class FormQuestionsRules(ModelForm):
             'allows_draw', 
             'allows_wildcard',
             'points_draw',
+            'last_position_penalty',
+            'points_last_position_penalty',
+            'label_last_position',
+            
         ]
 
 class FormSearchEvents(ModelForm):

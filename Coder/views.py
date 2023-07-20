@@ -3,7 +3,7 @@ from django.urls import reverse
 from .models import Players, Answers, Questions, PlayerScore, Event, QuestionsRules
 from .forms import FormPlayers, FormAnswersPlayer, FormQuestions, SignUpForm, FormEditAccount, FormProfile, FormSearchQuestions, FormSearchPlayers, FormSearchAnswers,FormQuestionsPlayers,FormAnswers, FormSearchQuestionsRules, FormQuestionsRules, FormSearchEvents,FormEvents
 from django.db.models import Q, F, FloatField, ExpressionWrapper, DateField, CharField,Exists, OuterRef, Prefetch, Sum,Subquery, Sum
-from django.db.models.functions import Cast, Abs, Coalesce
+from django.db.models.functions import Cast, Abs, Coalesce, Round
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required, user_passes_test
@@ -33,6 +33,16 @@ def calculateQuestionPoints(questionID, params):
     
     return _points
 
+def calculateQuestionPointsLast(questionID):
+    _points = 0
+    _question = Questions.objects.get(id=questionID)
+    _rules = _question.question_rule
+    
+    if _rules.last_position_penalty:
+        _points = _rules.points_last_position_penalty
+    
+    return _points
+
 def calculateQuestionResult(questionID):
 
     params = {}
@@ -43,18 +53,36 @@ def calculateQuestionResult(questionID):
         closest=ExpressionWrapper( Abs(F('answer') - F('question__correct_answer')), output_field=FloatField())
     ).order_by('closest')
     
+    for answer in _answers:
+        answer.closest = round(answer.closest, 2)
+
+
+    _answers_list = list(_answers)
+
+    #WINNER
     _winner_value = _answers.first().answer if _answers else None
-    _answers_winner = _answers.filter(answer=_winner_value)
+    _winner_answer = _answers.first().closest if _answers else None
+    # _answers_winner = _answers.filter(closest=_winner_answer)
+    _answers_winner = [answer for answer in _answers_list if answer.closest == _winner_answer]
+
+    #LAST
+    _last_value = _answers.last().answer if _answers else None
+    _last_answer = _answers.last().closest if _answers else None
+    _answers_last = [answer for answer in _answers_list if answer.closest == _last_answer]
+
+
 
     _draw = len(_answers_winner) > 1
     _exact_answer = _winner_value == _question.correct_answer
 
     params['question'] = _question
     params['winner'] = _answers_winner
+    params['last'] = _answers_last
     params['answers'] = _answers
     params['parameters_result'] = {'draw':_draw,'exact_answer':_exact_answer}
 
     params['points'] = calculateQuestionPoints(questionID, params['parameters_result'])
+    params['points_last'] = calculateQuestionPointsLast(questionID)
 
     return params
 
@@ -66,6 +94,15 @@ def anotateQuestionResult(params):
             points = params['points']
         )
         _newScore.save()
+
+    for last in params['last']:
+        _newScore = PlayerScore(
+            winner_answer = last,
+            points = params['points_last']
+        )
+        _newScore.save()
+
+
 
 def dropQuestionResult(id):
 
@@ -1130,6 +1167,9 @@ def questionRules_add(request):
             _allows_draw = form.cleaned_data['allows_draw']
             _allows_wildcard = form.cleaned_data['allows_wildcard']
             _points_draw = form.cleaned_data['points_draw']
+            _last_position_penalty = form.cleaned_data['last_position_penalty']
+            _points_last_position_penalty = form.cleaned_data['points_last_position_penalty']
+            _label_last_position = form.cleaned_data['label_last_position']
 
             _newQuestionRule = QuestionsRules(
                 name = _name,
@@ -1139,6 +1179,11 @@ def questionRules_add(request):
                 allows_draw = _allows_draw,
                 allows_wildcard = _allows_wildcard,
                 points_draw = _points_draw,
+                last_position_penalty = _last_position_penalty,
+                points_last_position_penalty = _points_last_position_penalty,
+                label_last_position = _label_last_position
+                
+                
                 )
 
             _newQuestionRule.save()
@@ -1175,6 +1220,9 @@ def questionRules_edit(request, id):
             _questionRule.allows_draw = form.cleaned_data['allows_draw']
             _questionRule.allows_wildcard = form.cleaned_data['allows_wildcard']
             _questionRule.points_draw = form.cleaned_data['points_draw']
+            _questionRule.last_position_penalty = form.cleaned_data['last_position_penalty']
+            _questionRule.points_last_position_penalty = form.cleaned_data['points_last_position_penalty']
+            _questionRule.label_last_position = form.cleaned_data['label_last_position']
 
             _questionRule.save()
 

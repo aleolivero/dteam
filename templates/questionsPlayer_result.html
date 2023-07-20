@@ -8,7 +8,7 @@
 
 <div class="container d-flex align-items-center justify-content-center flex-column ">
     
-    <div class="answers-player-table w-75 mt-3 ">
+    <div class="answers-player-table w-75 mt-3 pb-3">
         <div class="card-body" style="display: flex; flex-direction: row; justify-content: space-between;">
             
             <div class='pt-3 ps-3 d-flex flex-column justify-content-center'style="flex: 1">
@@ -67,7 +67,7 @@
 
                     <td scope="col">{{ forloop.counter }}</td>
 
-                    <td scope="col" style="padding-left: 10%; padding-top: 15px;">
+                    <td scope="col" style="padding-left: 10%; padding-top: 10px;padding-bottom: 10px;">
                         <div class="d-flex align-items-center">
 
                             <img
@@ -79,7 +79,7 @@
 
                             <div class="ms-3 text-start">
                                 <p class="fw-bold mb-1">{{ answer.player.first_name }} {{ answer.player.last_name }} &nbsp</p>
-                                <p class="mb-0" style="color: #171F2C;">{{ answer.player.user }}  {% if answer in winner %} <span class="badge text-bg-success">Ganador</span> {% endif %} </p>
+                                <p class="mb-0" style="color: #171F2C;">{{ answer.player.user }}  {% if answer in winner %} <span class="badge text-bg-success">Ganador</span> {% elif answer in last %} <span class="badge text-bg-danger">{{question.question_rule.label_last_position}}</span> {% endif %} </p>
                             </div>
 
                         </div>

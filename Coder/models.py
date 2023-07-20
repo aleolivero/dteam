@@ -65,6 +65,9 @@ class QuestionsRules(models.Model):
     allows_draw = models.BooleanField(verbose_name="Allows Draw", default=True)
     allows_wildcard = models.BooleanField(verbose_name="Allows Wildcard", default=False)
     points_draw = models.FloatField(verbose_name="Points Draw")
+    last_position_penalty = models.BooleanField(verbose_name="Last Position Penalty", default=True)
+    points_last_position_penalty =  models.FloatField(verbose_name="Points Last Position Penalty",default=0)
+    label_last_position = models.TextField(verbose_name="Label Last Position",default="Penalizado")
 
     def __str__(self):
         return self.name
