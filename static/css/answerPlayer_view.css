@@ -1,6 +1,6 @@
 .answers-player-table{
     border-radius: 10px;
-    background-color: rgb(169, 221, 243, 0.50);
+    background-color: rgb(163, 203, 255, 0.30);
     backdrop-filter:  blur(10px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1;
@@ -10,7 +10,7 @@
 }
 
 .answers-player-bt{
-    background-color: #217093;;
+    background-color: #9A9EA1;
     
     font-family: 'Poppins', sans-serif;
     width: 25%;
@@ -27,7 +27,7 @@
 }
 
 .answers-player-bt:hover{
-    background-color: #4eb8dd;
+    background-color: #d8d9da;
     color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
