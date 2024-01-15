@@ -869,7 +869,7 @@ def eventsPlayer_view(request):
 def winnersPlayer_view(request):
     params = {}
 
-    _events = Event.objects.all()
+    _events = Event.objects.all().order_by('date')
 
     params['events'] = _events
 
