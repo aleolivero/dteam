@@ -5,7 +5,7 @@
 
 {% block layout %}
 
-<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #192116;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #02002F;">
     <div class="container-fluid">
         
         <a class="navbar-brand ms-5" href="{% url 'index' %}">Home</a>
@@ -25,14 +25,14 @@
 
                         <!-- Answers -->
 
-                        <li class="nav-item ">
+                        <!-- <li class="nav-item ">
 
                             <a class="nav-link " href="{% url 'answersPlayerView' %}" role="button">
                                 Respuestas
                             </a>
                         
                         </li>
-
+ -->
                         <!-- Questions -->
 
                         <li class="nav-item ">
@@ -51,14 +51,14 @@
                             </a>
                         
                         </li>
-                        <!-- Scores -->
+                        <!-- Ganadores -->
                         <li class="nav-item ">
                     
-                            <a class="nav-link " href="{% url 'playerScorePlayerView' %}" role="button">
-                                Resultados
+                            <a class="nav-link " href="{% url 'winnersPlayerView' %}" role="button">
+                                Ganadores
                             </a>
                         
-                        </li>                
+                        </li>               
 
                     </ul>
                     {% endif %}             
@@ -72,6 +72,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'answers_view' %}">Respuestas</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'playerScorePlayerView' %}">Puntajes</a>
+                        </li>
+
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'questions_view' %}">Preguntas</a>
                         </li>                    
@@ -97,7 +102,7 @@
                             <a class="nav-link" href="{% url 'signin' %}"><b>Entrar</b></a>
                         </li>
                         {% else %}
-                        <li class="nav-item me-3">
+                        <!-- <li class="nav-item me-3">
                             <a class="nav-link position-relative" href="{% url 'view' %}">
                                 <i class="fas fa-comments"></i>
                                 {% if chats_not_read_ids %}
@@ -109,7 +114,7 @@
                                 {% endif %}
 
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item ">
                             {% if request.user.players.image %}
                                 <img src="{{request.user.players.image.url}}" class="img-fluid pt-1 me-1" style="max-height: 40px;">
@@ -142,7 +147,7 @@
 
 <div id="background-image" class="d-flex align-items-center flex-column min-vh-100">
     <div id="alert-season">
-        <h1 ><span class="badge text-black opacity-25  mt-5">Evento Primavera 2023</span></h1>
+        <h1 ><span class="badge text-black opacity-25  mt-5">Evento Verano 2024</span></h1>
     </div>
 
     {% block content%}
@@ -165,7 +170,7 @@
     
     <!-- Copyright -->
     
-    <div class="text-center p-3" style="background-color: #192116;">
+    <div class="text-center p-3" style="background-color: #02002F;">
         © 2023 Copyright:
         <a class="text-white" href="http://dteam.ar/">dteam.ar</a>
     </div>

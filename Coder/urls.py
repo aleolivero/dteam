@@ -46,6 +46,8 @@ urlpatterns = [
     path('eventsPlayerView/', views.eventsPlayer_view, name='eventsPlayerView'),
     path('eventsPlayerResult/<id>', views.eventsPlayer_result, name='eventsPlayerResult'),
     
+    path('winnersPlayerView/', views.winnersPlayer_view, name='winnersPlayerView'),
+
     path('playerScorePlayerView/', views.playerScorePlayer_view, name='playerScorePlayerView'),
 
     path('questionsPlayer/', views.questionsPlayer_view, name='questionsPlayerView'),

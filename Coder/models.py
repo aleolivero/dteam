@@ -44,16 +44,11 @@ class Event(models.Model):
     date = models.DateField(verbose_name="Event Date")
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='open')
     result = models.CharField(max_length=20, choices=RESULT_CHOICES, default='undetermined')
+    winner = models.ForeignKey(Players,blank=False,null=True,on_delete=models.CASCADE, verbose_name="Player")
 
     def __str__(self):
         return self.name
     
-    def winner(self):
-
-        _scores = PlayerScore.objects.filter(winner_answer__question__event__id = self.id)
-
-        return True
-
 
 
 class QuestionsRules(models.Model):

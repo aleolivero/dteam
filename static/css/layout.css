@@ -5,7 +5,8 @@
   }
 
 #background-image{
-  background-image: url( '../img/background-season-iii.jpg'); 
+  background-image: url( '../img/background-season-iv.jpg');
+  /* background-color: #F4F2EE;  */
   background-size: cover;
 }
 

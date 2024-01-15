@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, DecimalField
 from Coder.models import Players, Questions, Answers, Event, QuestionsRules
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -143,7 +143,7 @@ class FormAnswersPlayer(ModelForm):
         ]
         widgets = {
             'question': forms.HiddenInput(attrs={'class': 'form-control','readonly': True}),
-            'answer': forms.TextInput(attrs={'class': 'form-control'}),
+            'answer': forms.NumberInput(attrs={'class': 'form-control'}),
         }
     def __init__(self, *args, **kwargs):
         question = kwargs.pop('question', None)
@@ -153,6 +153,13 @@ class FormAnswersPlayer(ModelForm):
             self.fields['question'].initial = question
             self.fields['question'].label = ""
             self.fields['question_text'].initial = str(question)
+            # Define el campo 'answer' como DecimalField
+            self.fields['answer'] = forms.DecimalField(
+                # decimal_places=2,  # Puedes ajustar el número de decimales
+                widget=forms.NumberInput(attrs={'class': 'form-control'}),
+                required=True
+            )
+
 
 class FormSearchAnswers(ModelForm):
 
@@ -271,6 +278,7 @@ class FormEvents(ModelForm):
             'name',
             'date', 
             'status', 
-            'result'
+            'result',
+            'winner'
         ]
         widgets = {'date': forms.DateInput(attrs={'type': 'date'}),}

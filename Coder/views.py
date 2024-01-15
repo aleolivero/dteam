@@ -864,6 +864,18 @@ def eventsPlayer_view(request):
 
     return render(request,'eventsPlayer_view.html',params)
 
+
+@login_required
+def winnersPlayer_view(request):
+    params = {}
+
+    _events = Event.objects.all()
+
+    params['events'] = _events
+
+    return render(request,'winnersPlayer_view.html',params)
+
+
 @login_required
 def eventsPlayer_result(request, id):
     params = {}
@@ -1295,12 +1307,14 @@ def events_add(request):
             _date = form.cleaned_data['date']
             _status = form.cleaned_data['status']
             _result = form.cleaned_data['result']
+            _winner = form.cleaned_data['winner']
 
             _newEvent = Event(
                 name = _name,
                 date = _date,
                 status = _status,
                 result = _result,
+                winner = _winner,
                 )
 
             _newEvent.save()
@@ -1334,6 +1348,7 @@ def events_edit(request, id):
             _event.date = form.cleaned_data['date']
             _event.status = form.cleaned_data['status']
             _event.result = form.cleaned_data['result']
+            _event.winner = form.cleaned_data['winner']
             _event.save()
 
             return redirect(reverse('events_view'))
